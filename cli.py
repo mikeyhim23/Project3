@@ -91,3 +91,16 @@ def delete_products():
     session.delete(product)
     session.commit()
     print(f'Product ID {product_id} deleted successfully')
+
+def assign_product():
+    product_id = int(input('Enter product ID:'))
+    category_id = int(input('Enter the new Category ID:'))
+    product = session.get(Products, product_id)
+    category = session.gt(Category, category_id)
+
+    if not product or not category:
+        print('Invalid product ID or Categoty ID') 
+        return
+    product.category_id = category_id
+    session.commit()
+    print('Category assigned successfully')
