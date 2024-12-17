@@ -27,10 +27,36 @@ def update_category():
     category_id = int(input('Enter Category ID to update: '))
     category = session.get(Category,category_id)
     if not category:
-        print(f'Category with ID {category_id}')
+        print(f'Category with ID {category_id} doesn/t exist.')
         return
     category.name = input(f'Enter new name for Category (current: {category.name}):') or category.name
     category.description = input(f'Enter new description for Category (current: {category.description}):') or category.description
 
     session.commit()
     print(f'Category ID {category_id} updated successfully')
+
+
+def delete_category():
+    category_id = int(input('Enter Category ID to update: '))
+    category = session.get(Category,category_id)
+    if not category:
+        print(f'Category with ID {category_id} doesn/t exist.')
+        return
+    session.delete(category)
+    session.commit()
+    print (f'Category ID {category_id} deleted successfully.')
+
+
+def create_product():
+    name = input('Enter product name:')
+    price = int(input('Enter product price:'))
+    quantity = input('Enter product quantity:')
+    category_id = int(input('Enter Category ID:'))
+    category = session.get(Category, category_id)
+    if not category:
+        print(f'Category with ID {category_id} doesn/t exist')
+        return
+    product = Products(name=name, print=price, quantity=quantity, category_id=category_id)
+    session.add(product)
+    session.commit()
+    print(f'Product "{name}" created with ID {product.id} and assigned to Category_ID {category_id}')
