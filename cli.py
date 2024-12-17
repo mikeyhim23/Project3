@@ -118,3 +118,17 @@ def list_products():
         print('No categories found.')
     for product in products:
         print(product)
+
+def view_products_by_category():
+    category_id = int("Enter Category ID to view products: ")
+    category = session.get(Category, category_id)
+    if not category:
+        print("Category with ID {category_id} doesn/t exist ")
+        return
+    products = category.products
+    if not products:
+        print(f"No products found for Category with ID {category_id}")
+        return
+    print(f'Products belonging to Category "{category.name}" (ID {category_id}):')
+    for product in products:
+        print(product)
