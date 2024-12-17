@@ -27,7 +27,7 @@ def update_category():
     category_id = int(input('Enter Category ID to update: '))
     category = session.get(Category,category_id)
     if not category:
-        print(f'Category with ID {category_id} doesn/t exist.')
+        print(f'Category with ID {category_id} doesnt exist.')
         return
     category.name = input(f'Enter new name for Category (current: {category.name}):') or category.name
     category.description = input(f'Enter new description for Category (current: {category.description}):') or category.description
@@ -37,10 +37,10 @@ def update_category():
 
 
 def delete_category():
-    category_id = int(input('Enter Category ID to update: '))
+    category_id = int(input('Enter Category ID to delete: '))
     category = session.get(Category,category_id)
     if not category:
-        print(f'Category with ID {category_id} doesn/t exist.')
+        print(f'Category with ID {category_id} doesnt exist.')
         return
     session.delete(category)
     session.commit()
@@ -54,9 +54,9 @@ def create_product():
     category_id = int(input('Enter Category ID:'))
     category = session.get(Category, category_id)
     if not category:
-        print(f'Category with ID {category_id} doesn/t exist')
+        print(f'Category with ID {category_id} doesnt exist')
         return
-    product = Products(name=name, print=price, quantity=quantity, category_id=category_id)
+    product = Products(name=name, price=price, quantity=quantity, category_id=category_id)
     session.add(product)
     session.commit()
     print(f'Product "{name}" created with ID {product.id} and assigned to Category_ID {category_id}')
@@ -69,13 +69,13 @@ def update_product():
         print(f'Product with Id {product_id} does not exist')
         return
     product.name = input('Enter new name for product (current: {product.name}):') or product.name
-    product.price = input('Enter new price for product (current: {product.price}):') or product.price
+    product.price = int(input('Enter new price for product (current: {product.price}):') or product.price)
     product.quantity = input('Enter new quantity for product (current: {product.quantity}):') or product.quantity
     new_category_id = input(f'Enter new Category ID for product (current: {product.category_id}):') or product.category_id
     if new_category_id:
         new_category = session.get(Category, int(new_category_id))
         if not new_category:
-            print (f'Category with ID {new_category_id} doesn/t exist. Skipping Ctegory update')
+            print (f'Category with ID {new_category_id} doesnt exist. Skipping Ctegory update')
         
         else:
             product.category_id = new_category_id
@@ -86,7 +86,7 @@ def delete_products():
     product_id = int(input('Enter product to delete:'))
     product = session.get(Products, product_id)
     if not product:
-        print(f"Product with ID {product_id} doesn/t exist")
+        print(f"Product with ID {product_id} doesnt exist")
         return
     session.delete(product)
     session.commit()
@@ -113,17 +113,17 @@ def list_categories():
         print(category)
 
 def list_products():
-    Products = session.query(Products).all()
+    products = session.query(Products).all()
     if not Products:
         print('No categories found.')
     for product in products:
         print(product)
 
 def view_products_by_category():
-    category_id = int("Enter Category ID to view products: ")
+    category_id = int(input("Enter Category ID to view products: "))
     category = session.get(Category, category_id)
     if not category:
-        print("Category with ID {category_id} doesn/t exist ")
+        print("Category with ID {category_id} doesnt exist ")
         return
     products = category.products
     if not products:
@@ -177,3 +177,6 @@ def main_menu():
         else:
             print('Invalid choice. PLease try again..')
         
+if __name__== '__main__':
+    init_db()
+    main_menu()
