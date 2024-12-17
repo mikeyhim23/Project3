@@ -60,3 +60,24 @@ def create_product():
     session.add(product)
     session.commit()
     print(f'Product "{name}" created with ID {product.id} and assigned to Category_ID {category_id}')
+
+def update_product():
+    product_id = int(input('Enter Product ID to update:'))
+    product = session.get(Products, product_id)
+
+    if not product:
+        print(f'Product with Id {product_id} does not exist')
+        return
+    product.name = input('Enter new name for product (current: {product.name}):') or product.name
+    product.price = input('Enter new price for product (current: {product.price}):') or product.price
+    product.quantity = input('Enter new quantity for product (current: {product.quantity}):') or product.quantity
+    new_category_id = input(f'Enter new Category ID for product (current: {product.category_id}):') or product.category_id
+    if new_category_id:
+        new_category = session.get(Category, int(new_category_id))
+        if not new_category:
+            print (f'Category with ID {new_category_id} doesn/t exist. Skipping Ctegory update')
+        
+        else:
+            product.category_id = new_category_id
+    session.commit()
+    print(f'Product ID {product_id} updated correctly')
