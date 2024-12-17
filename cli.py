@@ -111,3 +111,10 @@ def list_categories():
         print('No categories found.')
     for category in categories:
         print(category)
+
+def list_products():
+    Products = session.query(Products).all()
+    if not Products:
+        print('No categories found.')
+    for product in products:
+        print(product)
