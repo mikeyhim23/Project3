@@ -104,3 +104,10 @@ def assign_product():
     product.category_id = category_id
     session.commit()
     print('Category assigned successfully')
+
+def list_categories():
+    categories = session.query(Category).all()
+    if not categories:
+        print('No categories found.')
+    for category in categories:
+        print(category)
