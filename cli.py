@@ -22,3 +22,15 @@ def create_category():
     session.add(category)
     session.commit()
     print (f'Category "{name}" created with ID {category.id}' )
+
+def update_category():
+    category_id = int(input('Enter Category ID to update: '))
+    category = session.get(Category,category_id)
+    if not category:
+        print(f'Category with ID {category_id}')
+        return
+    category.name = input(f'Enter new name for Category (current: {category.name}):') or category.name
+    category.description = input(f'Enter new description for Category (current: {category.description}):') or category.description
+
+    session.commit()
+    print(f'Category ID {category_id} updated successfully')
