@@ -81,3 +81,13 @@ def update_product():
             product.category_id = new_category_id
     session.commit()
     print(f'Product ID {product_id} updated correctly')
+
+def delete_products():
+    product_id = int(input('Enter product to delete:'))
+    product = session.get(Products, product_id)
+    if not product:
+        print(f"Product with ID {product_id} doesn/t exist")
+        return
+    session.delete(product)
+    session.commit()
+    print(f'Product ID {product_id} deleted successfully')
