@@ -132,3 +132,48 @@ def view_products_by_category():
     print(f'Products belonging to Category "{category.name}" (ID {category_id}):')
     for product in products:
         print(product)
+
+
+def main_menu():
+    while True:
+        print('Welcome to my application. What option wll you choose?')
+        print('1. Create Category')
+        print('2. Create Product')
+        print('3. Update Category')
+        print('4. Update Product')
+        print('5. Delete Category')
+        print('6. Delete Product')
+        print('7. Assign Product to Category')
+        print('8. List Category')
+        print('9. List Product')
+        print('10. view products bt Category')
+        print('11. Back')
+        choice = input('Choose an option')
+
+        
+        if choice == '1':
+            create_category()
+        elif choice == '2':
+            create_product()
+        elif choice == '3':
+            update_category()
+        elif choice == '4':
+            update_product()
+        elif choice == '5':
+            delete_category()
+        elif choice == '6':
+            delete_products()
+        elif choice == '7':
+            assign_product()
+        elif choice == '8':
+            list_categories()
+        elif choice == '9':
+            list_products()
+        elif choice == '10':
+            view_products_by_category()
+        elif choice == '11':
+            print('Exiting...')
+            sys.exit()
+        else:
+            print('Invalid choice. PLease try again..')
+        
