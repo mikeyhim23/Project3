@@ -136,7 +136,7 @@ def view_products_by_category():
 
 def main_menu():
     while True:
-        print('Welcome to my application. What option wll you choose?')
+        print('Welcome to my application. What option will you choose?')
         print('1. Create Category')
         print('2. Create Product')
         print('3. Update Category')
