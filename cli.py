@@ -54,7 +54,7 @@ def create_product():
     category_id = int(input('Enter Category ID:'))
     category = session.get(Category, category_id)
     if not category:
-        print(f'Category with ID {category_id} doesnt exist')
+        print(f'Category with ID {category_id} doesnt exist.')
         return
     product = Products(name=name, price=price, quantity=quantity, category_id=category_id)
     session.add(product)
@@ -80,17 +80,17 @@ def update_product():
         else:
             product.category_id = new_category_id
     session.commit()
-    print(f'Product ID {product_id} updated correctly')
+    print(f'Product ID {product_id} updated correctly.')
 
 def delete_products():
     product_id = int(input('Enter product to delete:'))
     product = session.get(Products, product_id)
     if not product:
-        print(f"Product with ID {product_id} doesnt exist")
+        print(f"Product with ID {product_id} doesn/t exist.")
         return
     session.delete(product)
     session.commit()
-    print(f'Product ID {product_id} deleted successfully')
+    print(f'Product ID {product_id} deleted successfully.')
 
 def assign_product():
     product_id = int(input('Enter product ID:'))
@@ -99,11 +99,11 @@ def assign_product():
     category = session.gt(Category, category_id)
 
     if not product or not category:
-        print('Invalid product ID or Categoty ID') 
+        print('Invalid product ID or Categoty ID.') 
         return
     product.category_id = category_id
     session.commit()
-    print('Category assigned successfully')
+    print('Category assigned successfully.')
 
 def list_categories():
     categories = session.query(Category).all()
