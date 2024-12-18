@@ -148,7 +148,7 @@ def main_menu():
         print('9. List Product')
         print('10. View products by Category')
         print('11. Back')
-        choice = input('Choose an option')
+        choice = input('Choose an option: ')
 
         
         if choice == '1':
