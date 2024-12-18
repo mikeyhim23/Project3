@@ -123,7 +123,7 @@ def view_products_by_category():
     category_id = int(input("Enter Category ID to view products: "))
     category = session.get(Category, category_id)
     if not category:
-        print("Category with ID {category_id} doesnt exist ")
+        print("Category with ID {category_id} doesn't exist ")
         return
     products = category.products
     if not products:
