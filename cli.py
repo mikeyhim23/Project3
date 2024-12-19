@@ -96,7 +96,7 @@ def assign_product():
     product_id = int(input('Enter product ID:'))
     category_id = int(input('Enter the new Category ID:'))
     product = session.get(Products, product_id)
-    category = session.gt(Category, category_id)
+    category = session.get(Category, category_id)
 
     if not product or not category:
         print('Invalid product ID or Categoty ID.') 
